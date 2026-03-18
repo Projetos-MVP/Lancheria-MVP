@@ -1,0 +1,21 @@
+@startuml
+package "Lancheria" {
+    package "Website" {
+
+    }
+
+    package "Application" {
+        
+    }
+
+    package "System" {
+
+    }
+
+    package "Database" {
+
+    }
+    
+}
+
+@enduml
