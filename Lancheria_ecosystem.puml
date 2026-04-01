@@ -39,7 +39,7 @@ package "Lancheria" {
             -total_price: float
             -total_price: float
         }
-        
+        class "user"{
             -username: string
             -password: string
             -email: string
