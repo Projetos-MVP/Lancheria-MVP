@@ -1,4 +1,4 @@
-@startuml
+@startuml Lancheria_ecosystem
 package "Lancheria" {
     package "Website" {
 
@@ -10,9 +10,70 @@ package "Lancheria" {
 
     package "System" {
 
+       
+
     }
 
     package "Database" {
+        left to right direction
+
+        class "ingredient"{
+            -id: int
+            -name: string
+            -in_stock: int
+        }
+        class "item"{
+            -id: int
+            -name: string
+            -description: string
+            -ingredients: list
+            -custom: boolean
+            -price: float
+        }
+        class "order"{
+            -id: int
+            -customer_id: [user[id]]
+            -customer_address: [address]
+            -order_items: list[item]
+            -instruction: [custom_instruction[instruction]]
+            -total_price: float
+            -total_price: float
+        }
+        
+            -username: string
+            -password: string
+            -email: string
+            -phone: string
+            -role: string
+            -addresses: list[address]
+        }
+        class "custom_instruction"{
+            -id: int
+            -order_id: [order[id]]
+            -instruction: string
+        }
+        class "queue"{
+            -id: int
+            -orders: list[order]
+            -status: string
+        }
+        class "address"{
+            -id: int
+            -user_id: [user[id]]
+            -street: string
+            -city: string
+            -state: string
+            -country: string
+            -zip_code: string
+        }
+
+        
+        item "1" -- "0..*" ingredient : contains
+        order "1" -- "0..*" item : includes
+        order "1" <-- "1" custom_instruction : has
+        queue "1" -- "0..*" order : processes
+        order "1" <-- "0..1" custom_instruction : has
+        user "1" -- "0..*" order : places
 
     }
     
